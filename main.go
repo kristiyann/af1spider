@@ -20,8 +20,8 @@ func main() {
 		Size: os.Getenv("SIZE_US"),
 	}
 
-	err = logic.GetProductFromNike(nikeParams)
+	err = logic.HandleNike(nikeParams)
 	if err != nil {
-		log.Fatalf("error: " + err.Error())
+		log.Println("error: " + err.Error())
 	}
 }

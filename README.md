@@ -1,5 +1,7 @@
 ## <p align="center"> AF1 SPIDER <p align="center">
 
+Service to periodically check whether a certain Nike (at the moment) product is available in the desired size. <br>
+
 <h3> Use: </h3>
 1) Make sure you have golang & git installed <br>
 2) Clone the repository locally <br>

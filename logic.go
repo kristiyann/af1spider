@@ -31,7 +31,7 @@ type GetProductFromNikeParams struct {
 }
 
 func (l *logicImpl) HandleNike(params GetProductFromNikeParams) error {
-	resp := getNikeProduct(params)
+	resp := getProductFromNikeApi(params)
 
 	defer resp.Body.Close()
 
@@ -76,7 +76,7 @@ func (l *logicImpl) HandleNike(params GetProductFromNikeParams) error {
 }
 
 func (l *logicImpl) HandleNikeAlternate(params GetProductFromNikeParams) error {
-	resp := getNikeProduct(params)
+	resp := getProductFromNikeApi(params)
 
 	defer resp.Body.Close()
 
@@ -140,7 +140,7 @@ func decodeNikeProductResponse1(r *http.Response) *models.NikeProductResponse {
 	var responseModel models.NikeProductResponse
 	err := json.NewDecoder(r.Body).Decode(&responseModel)
 	if err != nil {
-		log.Println("error decoding json: " + err.Error())
+		log.Println("error decoding json of type 1: " + err.Error() + " (moving on to option 2)")
 	}
 
 	return &responseModel
@@ -156,7 +156,7 @@ func decodeNikeProductResponse2(r *http.Response) *models.NikeProductResponse2 {
 	return &responseModel
 }
 
-func getNikeProduct(params GetProductFromNikeParams) *http.Response {
+func getProductFromNikeApi(params GetProductFromNikeParams) *http.Response {
 	params.Url = strings.Replace(params.Url, "https://", "", -1)
 	strArr := strings.Split(params.Url, "/")
 	identifier := strArr[len(strArr)-1]

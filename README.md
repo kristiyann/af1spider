@@ -4,6 +4,7 @@ Service to periodically check whether a certain Nike (at the moment) product is 
 
 <h3> Use: </h3>
 1) Make sure you have golang & git installed <br>
+https://go.dev/ https://git-scm.com/downloads <br>
 2) Clone the repository locally <br>
 3) Run 'go mod tidy' in the root of the project to install dependencies <br>
 4) Create an .env file in the root of the project and populate the following variables: <br>

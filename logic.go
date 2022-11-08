@@ -38,7 +38,7 @@ func (l *logicImpl) HandleNike(params GetProductFromNikeParams) error {
 	// APPARENTLY json stucture varies between products so I guess I have to do this??
 	responseModel := decodeNikeProductResponse1(resp)
 	if responseModel == nil {
-		return l.HandleNikeAlternate(params)
+		return handleNikeAlternate(params)
 	}
 
 	product := responseModel.Objects[0]
@@ -75,7 +75,7 @@ func (l *logicImpl) HandleNike(params GetProductFromNikeParams) error {
 	return nil
 }
 
-func (l *logicImpl) HandleNikeAlternate(params GetProductFromNikeParams) error {
+func handleNikeAlternate(params GetProductFromNikeParams) error {
 	resp := getProductFromNikeApi(params)
 
 	defer resp.Body.Close()
@@ -111,7 +111,7 @@ func (l *logicImpl) HandleNikeAlternate(params GetProductFromNikeParams) error {
 				sendEmail(product.ProductInfo[0].ProductContent.FullTitle, params.Size, params.Url)
 			} else {
 				time.Sleep(15 * time.Second)
-				l.HandleNikeAlternate(params)
+				handleNikeAlternate(params)
 			}
 		}
 	}

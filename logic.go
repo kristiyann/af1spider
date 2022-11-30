@@ -15,13 +15,13 @@ import (
 	"github.com/kristiyann/af1-spider/models"
 )
 
-type LogicImpl interface {
-	HandleNike(params GetProductFromNikeParams) error
+type Logic interface {
+	HandleGet(params GetProductFromNikeParams) error
 }
 
 type logicImpl struct{}
 
-func NewLogicImpl() LogicImpl {
+func NewLogic() Logic {
 	return &logicImpl{}
 }
 
@@ -30,7 +30,7 @@ type GetProductFromNikeParams struct {
 	Size string
 }
 
-func (l *logicImpl) HandleNike(params GetProductFromNikeParams) error {
+func (l *logicImpl) HandleGet(params GetProductFromNikeParams) error {
 	resp := getProductFromNikeApi(params)
 
 	defer resp.Body.Close()
@@ -67,7 +67,7 @@ func (l *logicImpl) HandleNike(params GetProductFromNikeParams) error {
 				sendEmail(product.ProductInfo[0].ProductContent.FullTitle, params.Size, params.Url)
 			} else {
 				time.Sleep(15 * time.Second)
-				l.HandleNike(params)
+				l.HandleGet(params)
 			}
 		}
 	}

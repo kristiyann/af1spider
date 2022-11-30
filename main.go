@@ -13,14 +13,14 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	logic := NewLogicImpl()
+	logic := NewLogic()
 
 	nikeParams := GetProductFromNikeParams{
 		Url:  os.Getenv("PRODUCT_LINK"),
 		Size: os.Getenv("SIZE_US"),
 	}
 
-	err = logic.HandleNike(nikeParams)
+	err = logic.HandleGet(nikeParams)
 	if err != nil {
 		log.Println("error: " + err.Error())
 	}

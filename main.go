@@ -15,7 +15,7 @@ func main() {
 
 	logic := NewLogic()
 
-	nikeParams := GetProductFromNikeParams{
+	nikeParams := GetProductParams{
 		Url:  os.Getenv("PRODUCT_LINK"),
 		Size: os.Getenv("SIZE_US"),
 	}

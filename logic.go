@@ -16,7 +16,7 @@ import (
 )
 
 type Logic interface {
-	HandleGet(params GetProductFromNikeParams) error
+	HandleGet(params GetProductParams) error
 }
 
 type logicImpl struct{}
@@ -25,12 +25,12 @@ func NewLogic() Logic {
 	return &logicImpl{}
 }
 
-type GetProductFromNikeParams struct {
+type GetProductParams struct {
 	Url  string
 	Size string
 }
 
-func (l *logicImpl) HandleGet(params GetProductFromNikeParams) error {
+func (l *logicImpl) HandleGet(params GetProductParams) error {
 	resp := getProductFromNikeApi(params)
 
 	defer resp.Body.Close()
@@ -75,7 +75,7 @@ func (l *logicImpl) HandleGet(params GetProductFromNikeParams) error {
 	return nil
 }
 
-func handleNikeAlternate(params GetProductFromNikeParams) error {
+func handleNikeAlternate(params GetProductParams) error {
 	resp := getProductFromNikeApi(params)
 
 	defer resp.Body.Close()
@@ -156,7 +156,7 @@ func decodeNikeProductResponse2(r *http.Response) *models.NikeProductResponse2 {
 	return &responseModel
 }
 
-func getProductFromNikeApi(params GetProductFromNikeParams) *http.Response {
+func getProductFromNikeApi(params GetProductParams) *http.Response {
 	params.Url = strings.Replace(params.Url, "https://", "", -1)
 	strArr := strings.Split(params.Url, "/")
 	identifier := strArr[len(strArr)-1]

@@ -3,14 +3,14 @@
 Service to periodically check whether a certain Nike (at the moment) product is available in the desired size. <br>
 
 ## Use:
-1. Make sure you have golang & git installed <br>
+1. Make sure you have Go & Git installed <br>
 https://go.dev/ https://git-scm.com/downloads <br>
 2. Clone the repository locally <br>
 3. Install dependencies
 ```bash
 go mod tidy
 ```
-4) Create an .env file in the root of the project and populate the following variables <br>
+4. Create an .env file in the root of the project and populate the following variables <br>
 ```bash
 FROM_EMAIL=
 ```
@@ -31,7 +31,8 @@ PRODUCT_LINK=
 SIZE_US=
 ```
 *Size you're looking for in US terms <br>
-5) From there on you can just run 
+
+5. From there on you can just run 
 ```bash
 go run .
 ```
